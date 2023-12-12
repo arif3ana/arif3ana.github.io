@@ -52,7 +52,6 @@ const fillTable = document.getElementById("fillTable");
 function mediaCheck(row, data) {
   const cell = document.createElement("td");
   if (data) {
-    // Jika ada, tambahkan ikon check
     const iconCheck = document.createElement("i");
     iconCheck.className = "bi bi-check-lg";
     cell.appendChild(iconCheck);
@@ -80,13 +79,13 @@ function dataUrl(row, data) {
   row.appendChild(cellDetail);
 }
 
+// Render data 
 const dataRender = (data) => {
   fillTable.innerHTML = "";
   data.forEach((isi) => {
-    // Buat elemen baris baru
     const row = document.createElement("tr");
     row.classList.add("list-table");
-    // Tambahkan sel-sel dengan data dari objek JSON
+    
     const cellNama = document.createElement("td");
     cellNama.textContent = isi.name;
     row.appendChild(cellNama);
@@ -102,7 +101,8 @@ const dataRender = (data) => {
     mediaCheck(row, isi.youtube);
     mediaCheck(row, isi.tiktok);
     detailLink(row, isi.id);
-    // Tambahkan baris ke tbody
+    
+    // add line to parent element
     fillTable.appendChild(row);
   });
 };
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tiktokCheckbox = document.getElementById("tiktokCheckbox");
 
   function filterAndRenderData() {
-    // Filter data berdasarkan kondisi checkbox dan input pencarian
+    // search feature
     const filteredData = data
       .filter((isi) => {
         return (
@@ -132,13 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
         isi.name.toLowerCase().includes(searchInput.value.toLowerCase())
       );
 
-    // Panggil dataRender dengan data yang telah difilter
+    // call teh dataRender function with parameter already to filter
     dataRender(filteredData);
   }
 
-  // Tambahkan event listener untuk setiap perubahan pada input pencarian
+  // add event listener for each change from input search
   searchInput.addEventListener("input", filterAndRenderData);
-  // Tambahkan event listener untuk checkbox
   instagramCheckbox.addEventListener("change", filterAndRenderData);
   youtubeCheckbox.addEventListener("change", filterAndRenderData);
   tiktokCheckbox.addEventListener("change", filterAndRenderData);

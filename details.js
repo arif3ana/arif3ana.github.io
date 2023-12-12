@@ -1,6 +1,6 @@
       // Detail Page content
       document.addEventListener("DOMContentLoaded", function () {
-        // Dapatkan nilai parameter 'id' dari URL
+        // Get value from parameter "id" url 
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
 
@@ -54,7 +54,6 @@
         const detailData = getDetailDataById(id);
 
         const fillContent = (data) => {
-          // Dapatkan elemen di halaman
           const detailContent = document.getElementById("detail-content");
 
           const header = document.createElement("h5");
@@ -118,7 +117,7 @@
           detailContent.appendChild(cardBody);
         };
 
-        // Tampilkan konten detail sesuai dengan ID
+        // show content
         if (detailData) {
           fillContent(detailData);
         } else {
